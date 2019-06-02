@@ -1,0 +1,16 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login</h1>
+    <form method="post">
+        <label for="email">OTF Email Address</label>
+        <input type="text" name="email">
+        <label for="password">OTF Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Submit">
+    </form>
+</div>

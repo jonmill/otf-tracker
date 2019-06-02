@@ -1,0 +1,33 @@
+@page
+@model HomeModel
+@using OtfTracker.Website.Models
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Home</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Class Time</td>
+                <td>Coach</td>
+                <td>Calories Burned</td>
+                <td>Splat Points</td>
+                <td>Studio</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (SummaryViewModel summary in Model.Summaries)
+        {
+            <tr>
+                <td>@Html.DisplayFor(item => summary.ClassTime)</td>
+                <td>@Html.DisplayFor(item => summary.Coach)</td>
+                <td>@Html.DisplayFor(item => summary.CaloriesBurned)</td>
+                <td>@Html.DisplayFor(item => summary.SplatPoints)</td>
+                <td>@Html.DisplayFor(item => summary.StudioName)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
