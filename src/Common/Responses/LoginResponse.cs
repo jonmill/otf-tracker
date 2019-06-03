@@ -1,3 +1,4 @@
+using System;
 using OtfTracker.Common.Models;
 
 namespace OtfTracker.Common.Responses
@@ -13,5 +14,7 @@ namespace OtfTracker.Common.Responses
         public string Email { get; set; }
         public bool IsMigration { get; set; }
         public string JwtToken { get; set; }
+        public DateTime Expiration { get; set; }
+        public DateTime IssuedOn { get; set; }
     }
 }

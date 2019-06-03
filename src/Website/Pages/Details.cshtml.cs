@@ -16,23 +16,26 @@ using OtfTracker.Website.Models;
 namespace Website.Pages
 {
     [Authorize]
-    public class HomeModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly OtfApi _api;
 
         [BindProperty]
-        public IEnumerable<ClassSummary> Summaries { get; set; }
+        public ClassDetails Details { get; set; }
 
-        public HomeModel(OtfApi api)
+        [BindProperty]
+        public ClassSummary Summary { get; set; }
+
+        public DetailsModel(OtfApi api)
         {
             _api = api;
         }
 
-        public async Task<IActionResult> OnGet()
+        public async Task<IActionResult> OnGet(string id)
         {
             OtfUser otfUser = HttpContext.GetSignedInOtfUser();
-            Summaries = await _api.GetClassSummariesAsync(otfUser.MemberId, otfUser.SignInJwt);
-            Summaries = Summaries.OrderByDescending(s => s.ClassTime);
+            Details = await _api.GetClassDetailsAsync(id, otfUser.MemberId, otfUser.SignInJwt);
+            Summary = await _api.GetClassSummaryAsync(id, otfUser.MemberId, otfUser.SignInJwt);
             return Page();
         }
     }

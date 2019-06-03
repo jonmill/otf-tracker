@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,9 +35,14 @@ namespace OtfTracker.Website
             });
 
             services.AddSingleton<OtfApi>();
-            services.AddIdentity<OtfUser, OtfRole>().AddDefaultTokenProviders();
-            services.AddTransient<IUserStore<OtfUser>, OtfUserStore>();
-            services.AddTransient<IRoleStore<OtfRole>, OtfRoleStore>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.AccessDeniedPath = "/AccessDenied";
+                options.Cookie.HttpOnly = true;
+                options.Cookie.SameSite = SameSiteMode.Strict;
+                options.LoginPath = "/login";
+                options.LogoutPath = "/logout";
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

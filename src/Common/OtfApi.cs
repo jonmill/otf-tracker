@@ -60,6 +60,8 @@ namespace OtfTracker.Common
                     Locale = jsonToken.Claims.Single(c => c.Type == "locale").Value,
                     MemberId = jsonToken.Claims.Single(c => c.Type == "cognito:username").Value,
                     JwtToken = response.AuthenticationResult.IdToken,
+                    Expiration = jsonToken.ValidTo,
+                    IssuedOn = jsonToken.ValidFrom,
                 };
             }
             else
@@ -96,6 +98,12 @@ namespace OtfTracker.Common
             }
 
             return response.Data;
+        }
+
+        public async Task<ClassSummary> GetClassSummaryAsync(string classId, string memberId, string jwtToken)
+        {
+            IEnumerable<ClassSummary> summaries = await GetClassSummariesAsync(memberId, jwtToken);
+            return summaries.SingleOrDefault(s => s.ClassHistoryUuid.ToString() == classId);
         }
 
         public async Task<ClassDetails> GetClassDetailsAsync(string classId, string memberId, string jwtToken)

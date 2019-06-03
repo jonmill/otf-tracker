@@ -1,0 +1,76 @@
+@page
+@model DetailsModel
+@using OtfTracker.Website.Models
+@{
+    ViewData["Title"] = "Details page";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var hrZoneCharting = c3.generate({
+                bindto: '#hrZonesChart',
+                data: {
+                    columns: [
+                        ['Grey', @Model.Details.HeartRateData.BlackZone],
+                        ['Blue', @Model.Details.HeartRateData.BlueZone],
+                        ['Green', @Model.Details.HeartRateData.GreenZone],
+                        ['Orange', @Model.Details.HeartRateData.OrangeZone],
+                        ['Red', @Model.Details.HeartRateData.RedZone],
+                    ],
+                    colors: {
+                        Grey: '#9ba09d',
+                        Blue: '#003ec4',
+                        Green: '#10c400',
+                        Orange: '#ff8300',
+                        Red: '#a50000'
+                    },
+                    type: 'pie'
+                }
+            });
+
+            var hrValuesCharting = c3.generate({
+                bindto: '#hrValuesChart',
+                data: {
+                    columns: [
+                        ['Average', @Model.Details.HeartRateData.AverageHeartRate],
+                        ['Average %', @Model.Details.HeartRateData.AverageHeartRatePercent],
+                        ['Max', @Model.Details.HeartRateData.MaxHeartRate],
+                        ['Max %', @Model.Details.HeartRateData.MaxPercentHr],
+                    ],
+                    type: 'bar'
+                }
+            });
+        });
+    </script>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Class Time</td>
+                <td>Class Type<td>
+                <td>Coach</td>
+                <td>Calories Burned</td>
+                <td>Splat Points</td>
+                <td>Studio</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(item => item.Summary.ClassTime)</td>
+                <td>@Html.DisplayFor(item => item.Summary.ClassType)</td>
+                <td>@Html.DisplayFor(item => item.Summary.Coach)</td>
+                <td>@Html.DisplayFor(item => item.Summary.CaloriesBurned)</td>
+                <td>@Html.DisplayFor(item => item.Summary.SplatPoints)</td>
+                <td>@Html.DisplayFor(item => item.Summary.StudioName)</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="chart-container">
+        <h2>Heart Rate Zones</h2>
+        <div id="hrZonesChart"></div>
+    </div>
+</div>

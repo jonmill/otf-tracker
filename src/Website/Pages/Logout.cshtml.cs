@@ -17,27 +17,16 @@ using System.Threading.Tasks;
 namespace Website.Pages
 {
     [AllowAnonymous]
-    public class LoginModel : PageModel
+    public class LogoutModel : PageModel
     {
-        [BindProperty]
-        public OtfTracker.Website.Models.LoginModel Input { get; set; }
-
-        private readonly OtfApi _api;
-
-        public LoginModel(OtfApi api)
-        {
-            _api = api;
-        }
-
-        public void OnGet()
+        public LogoutModel()
         {
         }
 
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnGet()
         {
-            LoginResponse response = await _api.LoginAsync(Input.Email, Input.Password);
-            await HttpContext.SignInOtfUserAsync(response);
-            return new RedirectToPageResult("home");
+            await HttpContext.SignOutOtfUserAsync();
+            return new RedirectToPageResult("Index");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace OtfTracker.Common.Models
         public int OrangeZone { get; set; }
         public int RedZone { get; set; }
         public int Calories { get; set; }
-        public int SplatPoints { get; set; }
+        public int SplatPoint { get; set; }
         public int AverageHeartRate { get; set; }
         public int AverageHeartRatePercent { get; set; }
         public int MaxHeartRate { get; set; }
