@@ -1,9 +1,0 @@
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\bin\Debug\netstandard2.0\Common.deps.json
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\bin\Debug\netstandard2.0\Common.dll
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\bin\Debug\netstandard2.0\Common.pdb
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\obj\Debug\netstandard2.0\Common.csprojAssemblyReference.cache
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\obj\Debug\netstandard2.0\Common.csproj.CoreCompileInputs.cache
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\obj\Debug\netstandard2.0\Common.AssemblyInfoInputs.cache
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\obj\Debug\netstandard2.0\Common.AssemblyInfo.cs
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\obj\Debug\netstandard2.0\Common.dll
-C:\Users\JonathanMiller\Repositories\OtfTracker\src\Common\obj\Debug\netstandard2.0\Common.pdb
