@@ -1,0 +1,35 @@
+@page
+@model HomeModel
+@using OtfTracker.Common.Models
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Home</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Class Time</td>
+                <td>Coach</td>
+                <td>Calories Burned</td>
+                <td>Splat Points</td>
+                <td>Studio</td>
+                <td>Actions</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (ClassSummary summary in Model.Summaries)
+        {
+            <tr>
+                <td>@Html.DisplayFor(item => summary.ClassTime)</td>
+                <td>@Html.DisplayFor(item => summary.Coach)</td>
+                <td>@Html.DisplayFor(item => summary.CaloriesBurned)</td>
+                <td>@Html.DisplayFor(item => summary.SplatPoints)</td>
+                <td>@Html.DisplayFor(item => summary.StudioName)</td>
+                <td><a asp-page="./Details" asp-route-id="@summary.ClassHistoryUuid">Details</a></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

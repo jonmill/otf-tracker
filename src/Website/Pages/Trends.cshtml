@@ -1,0 +1,129 @@
+@page
+@model TrendsModel
+@using OtfTracker.Website.Models
+@{
+    ViewData["Title"] = "Trends page";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var hrZoneCharting = c3.generate({
+                bindto: '#splatsChart',
+                data: {
+                    x: 'x',
+                    xFormat: '%m/%d/%Y',
+                    type: 'bar',
+                    columns: [
+                        ['x', @Html.Raw(@Model.ClassDates)],
+                        ['Splats', @Html.Raw(@Model.SplatPoints)],
+                        ['Red', @Html.Raw(@Model.RedZonePoints)],
+                        ['Orange', @Html.Raw(@Model.OrangeZonePoints)],
+                        ['Green', @Html.Raw(@Model.GreenZonePoints)],
+                        ['Blue', @Html.Raw(@Model.BlueZonePoints)],
+                        ['Grey', @Html.Raw(@Model.GreyZonePoints)],
+                    ],
+                    names: {
+                        Splats: 'Splat Points',
+                        Red: 'Red Zone',
+                        Orange: 'Orange Zone',
+                        Green: 'Green Zone',
+                        Blue: 'Blue Zone',
+                        Grey: 'Grey Zone',
+                    },
+                    colors: {
+                        Splats: '#8639b2',
+                        Red: '#a12217',
+                        Orange: '#c73800',
+                        Green: '#367a5d',
+                        Blue: '#3973b3',
+                        Grey: '#666c6f',
+                    },
+                    order: null,
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        tick: {
+                            format: '%m/%d'
+                        }
+                    }
+                }
+            });
+
+            var hrYearTrendChart = c3.generate({
+                bindto: '#hrYearChart',
+                data: {
+                    x: 'x',
+                    xFormat: '%m/%Y',
+                    type: 'line',
+                    columns: [
+                        ['x', @Html.Raw(@Model.PerMonthLabels)],
+                        ['MaxHr', @Html.Raw(@Model.MaxHeartRatePerMonth)],
+                        ['AvgHr', @Html.Raw(@Model.AverageHeartRatePerMonth)]
+                    ],
+                    names: {
+                        MaxHr: 'Max HR',
+                        AvgHr: 'Average HR',
+                    },
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        tick: {
+                            format: '%m/%d'
+                        }
+                    }
+                }
+            });
+
+            var hrLastTrendChar = c3.generate({
+                bindto: '#hrLastChart',
+                data: {
+                    x: 'x',
+                    xFormat: '%m/%d/%Y',
+                    type: 'line',
+                    columns: [
+                        ['x', @Html.Raw(@Model.LastClassesLabels)],
+                        ['MaxHr', @Html.Raw(@Model.MaxHeartRateLastClasses)],
+                        ['AvgHr', @Html.Raw(@Model.AverageHeartRateLastClasses)]
+                    ],
+                    names: {
+                        MaxHr: 'Max HR',
+                        AvgHr: 'Average HR',
+                    },
+                },
+                axis: {
+                    x: {
+                        type: 'category',
+                        tick: {
+                            format: '%m/%d'
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Trends</h1>
+    <div class="wide-chart-container">
+        <h2>Splat Points</h2>
+        <div id="splatsChart"></div>
+    </div>
+    <div class="chart-container">
+        <h2>Classes Trend</h2>
+        <span>Average Classes Per Month: @Model.ClassesPerMonth</span>
+        <span>Classes This Year: @Model.ClassesThisYear</span>
+        <span>Lifetime Classes: @Model.ClassesTotal</span>
+    </div>
+    <div class="wide-chart-container">
+        <h2>Yearly Heart Rate Trend</h2>
+        <div id="hrYearChart"></div>
+    </div>
+    <div class="wide-chart-container">
+        <h2>Last 10 Classes Heart Rate Trend</h2>
+        <div id="hrLastChart"></div>
+    </div>
+</div>
