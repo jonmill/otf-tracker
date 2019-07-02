@@ -15,3 +15,13 @@ Since this project is based on reverse-engineering, certain aspects may be buggy
 ## Contributing
 
 Contributions are very welcome. All contributions should be done through pull-requests and will be code-reviewed to ensure maintainability and to ensure the privacy statement above is maintained.
+
+## Running via Docker
+
+You can run this application via Docker, after installing docker run the following commands from the location that you cloned the repo to:
+```bash
+docker build -t otf-tracker .
+docker run -d -p 8080:80 --name otf-tracker otf-tracker
+```
+
+If everything worked, you can open the app by going to: http://localhost:8080
